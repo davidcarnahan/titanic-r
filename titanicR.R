@@ -93,7 +93,7 @@ exp(cbind(OR = coef(model), confint(model)))
 par(mfrow=c(2,2)) # Plot 4 plots in same screen
 plot(model)
 
-# all inclusive model
+# drop number of parent/children variable and fare variable given not statistically signficant
 model2 = glm(survived ~ class + age + sibsp + sex_cat,family=binomial(link='logit'), data=titanic2)
 summary(model2)
 exp(cbind(OR = coef(model2), confint(model2)))
@@ -103,7 +103,9 @@ par(mfrow=c(2,2)) # Plot 4 plots in same screen
 plot(model2)
 
 # try different package -- RMS -- to get pseudoR2
-# explanations found here: https://stats.stackexchange.com/questions/8511/how-to-calculate-pseudo-r2-from-rs-logistic-regression
+# explanations found here: 
+# https://stats.stackexchange.com/questions/8511/how-to-calculate-pseudo-r2-from-rs-logistic-regression
+
 library(rms)
 model3 <- lrm(survived ~ class + age + sibsp + sex_cat, data=titanic2)
 print(model3)
